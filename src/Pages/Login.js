@@ -1,4 +1,6 @@
-import React from "react";
+import React, { useContext } from "react";
+
+import { AppContext } from "../AppContext";
 
 import '../Styles/_styles.sass';
 
@@ -6,11 +8,17 @@ import FlexContainer from "../Components/FlexContainer";
 import Span from "../Components/Span";
 import Input from "../Components/Input";
 import Button from "../Components/Button";
+import Icon from "../Components/Icon";
+
+import { faSun, faMoon } from '@fortawesome/free-solid-svg-icons'
 
 const Login = () => {
 
+    const { isDark, toggleIsDark } = useContext(AppContext);
+    const classForApp = isDark ? 'container container--darkView' : 'container container--lightView';
+
     return(
-        <div className='container container--lightView' >
+        <div className={classForApp} >
             <FlexContainer flexDirection='column' alignItems='center' justifyContent='center' >
                 <Span fontSize="34" margin="25px 25px 0px">bright coders factory</Span>
                 <Span fontSize="14" margin="0px 20px 10px">login page</Span>
@@ -30,6 +38,13 @@ const Login = () => {
                 >
                     hello
                 </Button>
+
+                <Icon 
+                        iconSun={faSun} 
+                        iconMoon={faMoon}
+                        isDark={isDark}
+                        handleClick={toggleIsDark}     
+                    />
             </FlexContainer>
         </div>
     )
