@@ -15,7 +15,6 @@ import Error from './Pages/Error';
 
 function App() {
 
-
   return (
     <div className="App">
         <Router>

@@ -7,12 +7,16 @@ import '../Styles/_styles.sass';
 import FlexContainer from "../Components/FlexContainer";
 import Span from "../Components/Span";
 import Button from "../Components/Button";
+import Icon from "../Components/Icon";
+
+import { faSun, faMoon } from '@fortawesome/free-solid-svg-icons'
 
 const Home = () => {
 
     const { isDark, toggleIsDark } = useContext(AppContext);
-
     const classForApp = isDark ? 'container container--darkView' : 'container container--lightView';
+
+
 
     return(
         <div className={classForApp} >
@@ -34,7 +38,12 @@ const Home = () => {
                         register
                     </Button>
 
-                    <button onClick={() => toggleIsDark()}>toggle-alpha</button>
+                    <Icon 
+                        iconSun={faSun} 
+                        iconMoon={faMoon}
+                        isDark={isDark}
+                        handleClick={toggleIsDark}     
+                    />
                 
                 </FlexContainer>
         </div>
