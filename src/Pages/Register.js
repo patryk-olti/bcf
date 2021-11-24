@@ -8,6 +8,7 @@ import FlexContainer from "../Components/FlexContainer";
 import Span from "../Components/Span";
 import Input from "../Components/Input";
 import Button from "../Components/Button";
+import LinkElement from "../Components/LinkElement";
 import Icon from "../Components/Icon";
 
 import { faSun, faMoon } from '@fortawesome/free-solid-svg-icons'
@@ -38,10 +39,14 @@ const Register = () => {
                     name='password'
                     type='password'
                 />
-                <Button 
-                    fontSize='18'
-                >
+                <Button fontSize='18'>
                     hello
+                </Button>
+
+                <Button fontSize='16'>
+                    <LinkElement path='/'>
+                        back
+                    </LinkElement>
                 </Button>
 
                 <Icon 

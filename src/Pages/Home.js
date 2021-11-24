@@ -7,6 +7,7 @@ import '../Styles/_styles.sass';
 import FlexContainer from "../Components/FlexContainer";
 import Span from "../Components/Span";
 import Button from "../Components/Button";
+import LinkElement from "../Components/LinkElement";
 import Icon from "../Components/Icon";
 
 import { faSun, faMoon } from '@fortawesome/free-solid-svg-icons'
@@ -25,11 +26,15 @@ const Home = () => {
                     <Span fontSize="14" margin="0px 0px 20px 20px" >recruit application</Span>
 
                     <Button fontSize='20' >
-                        login
+                        <LinkElement path="login">
+                            login
+                        </LinkElement>
                     </Button>
 
                     <Button fontSize='20' >
-                        register
+                        <LinkElement path="register">
+                            register
+                        </LinkElement>
                     </Button>
 
                     <Icon 
