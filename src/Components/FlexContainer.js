@@ -1,5 +1,7 @@
 import React from 'react';
 
+import '../Styles/_styles.sass';
+
 const FlexContainer = ({ children, flexDirection, alignItems, justifyContent }) => {
 
     const styles = {
@@ -13,7 +15,7 @@ const FlexContainer = ({ children, flexDirection, alignItems, justifyContent }) 
     }
 
     return(
-        <div style={styles} >
+        <div style={styles} className='flexContainer--lightView'>
             {children}
         </div>
     )
