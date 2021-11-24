@@ -13,7 +13,8 @@ const Button = ({ children, fontSize }) => {
         border: '1px solid black',
         borderRadius: '5px',
         cursor: 'pointer',
-        fontFamily: 'roboto'
+        fontFamily: 'roboto',
+        boxShadow: `1px 1px 2px 0px rgba(0,0,0,0.75)`
     }
 
     return(

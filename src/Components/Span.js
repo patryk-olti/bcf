@@ -1,8 +1,9 @@
 import React from 'react';
 
-const Span = ({ children, fontSize }) => {
+const Span = ({ children, fontSize, margin }) => {
 
     const styles = {
+        margin: `${margin}`,
         fontSize: `${fontSize}px`,
         letterSpacing: '2px'
     }

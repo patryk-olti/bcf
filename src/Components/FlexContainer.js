@@ -2,16 +2,17 @@ import React from 'react';
 
 import '../Styles/_styles.sass';
 
-const FlexContainer = ({ children, flexDirection, alignItems, justifyContent }) => {
+const FlexContainer = ({ children, flexDirection, alignItems, justifyContent, padding }) => {
 
     const styles = {
         display: 'flex',
         flexDirection: `${flexDirection}`,
         alignItems: `${alignItems}`,
         justifyContent: `${justifyContent}`,
-        padding: '10px 20px',
+        padding: `${padding}`,
         border: '1px solid black',
-        borderRadius: '5px'
+        borderRadius: '5px',
+        boxShadow: `1px 1px 3px 0px rgba(0,0,0,0.75)`
     }
 
     return(
