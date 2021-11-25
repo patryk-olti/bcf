@@ -13,6 +13,8 @@ import Span from '../Components/Span';
 import LinkElement from '../Components/LinkElement';
 import Icon from '../Components/Icon';
 
+import Animation from './Animation';
+
 import { faSun, faMoon } from '@fortawesome/free-solid-svg-icons'
 
 const Login = () => {
@@ -37,6 +39,8 @@ const Login = () => {
     return(
         <div className={classForApp} >
             <FlexContainer flexDirection='column' alignItems='center' justifyContent='center' padding='10px'>
+
+                <Animation />
                 <Span fontSize='34' margin='25px 25px 0px'>bright coders factory</Span>
                 <Span fontSize='14' margin='0px 20px 10px'>login page</Span>
 

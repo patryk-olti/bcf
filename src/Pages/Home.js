@@ -10,6 +10,8 @@ import Button from "../Components/Button";
 import LinkElement from "../Components/LinkElement";
 import Icon from "../Components/Icon";
 
+import Animation from "./Animation";
+
 import { faSun, faMoon } from '@fortawesome/free-solid-svg-icons'
 
 const Home = () => {
@@ -21,6 +23,7 @@ const Home = () => {
         <div className={classForApp} >
                 <FlexContainer flexDirection='column' alignItems='center' justifyContent='center' padding='20px 40px'>
 
+                    <Animation />
                     <Span fontSize="24" margin="0px 20px" >Work with us, work with the best.</Span>
                     <Span fontSize="32" margin="5px 20px" >bright coders factory</Span>
                     <Span fontSize="14" margin="0px 0px 20px 20px" >recruit application</Span>

@@ -6,11 +6,14 @@ const Animation = () => {
 
     const styles = {
         background: {
+            position: 'absolute',
             display: 'flex',
             justifyContent: 'center',
             alignItems: 'center',
             height: '100vh',
-            backgroundColor: '#120C6B'
+            width: '100%',
+            backgroundColor: '#120C6B',
+            zIndex: 100
         },
         square: {
             width: '40px',
@@ -54,14 +57,6 @@ const Animation = () => {
         })
         .to(squareBackgroundRef.current, {
             y: 0,
-            duration: 0.6
-        })
-        .to(squareRef.current, {
-            rotate: 0,
-            duration: 0.6
-        })
-        .to(squareBackgroundRef.current, {
-            y: '100%',
             duration: 0.6
         })
         .to(backgroundRef.current, {
