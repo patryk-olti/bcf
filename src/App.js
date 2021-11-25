@@ -13,6 +13,8 @@ import Login from './Pages/Login';
 import Register from './Pages/Register';
 import Error from './Pages/Error';
 
+import Animation from './Pages/Animation';
+
 function App() {
 
   return (
@@ -22,6 +24,7 @@ function App() {
             <Route exact path='/' element={<Home />} />
             <Route exact path='/login' element={<Login />} />
             <Route exact path='/register' element={<Register />} />
+            <Route exact path='/animation' element={<Animation />} />
             <Route path='/*' element={<Error />} />
           </Routes>
         </Router>
