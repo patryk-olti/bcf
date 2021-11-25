@@ -1,55 +1,85 @@
-import React, { useContext } from "react";
+import React, { useState, useContext } from 'react';
 
-import { AppContext } from "../AppContext";
+import { Formik, Form, Field } from 'formik';
+import * as Yup from 'yup';
+
+import { AppContext } from '../AppContext';
 
 import '../Styles/_styles.sass';
+import '../Styles/_forms.sass';
 
-import FlexContainer from "../Components/FlexContainer";
-import Span from "../Components/Span";
-import Input from "../Components/Input";
-import Button from "../Components/Button";
-import LinkElement from "../Components/LinkElement";
-import Icon from "../Components/Icon";
+import FlexContainer from '../Components/FlexContainer';
+import Span from '../Components/Span';
+import LinkElement from '../Components/LinkElement';
+import Icon from '../Components/Icon';
 
 import { faSun, faMoon } from '@fortawesome/free-solid-svg-icons'
 
 const Login = () => {
 
+    const [ login, setLogin ] = useState('');
+    const [ password, setPassword ] = useState('');
+
     const { isDark, toggleIsDark } = useContext(AppContext);
     const classForApp = isDark ? 'container container--darkView' : 'container container--lightView';
 
+    const SignupSchema = Yup.object().shape({
+        loginInput: Yup.string()
+            .min(4, 'Too Short!')
+            .max(30, 'Too Long!')
+            .required('Required'),
+        passwordInput: Yup.string()
+            .min(4, 'Too Short!')
+            .max(30, 'Too Long!')
+            .required('Required'),
+    });
+
     return(
         <div className={classForApp} >
-            <FlexContainer flexDirection='column' alignItems='center' justifyContent='center' >
-                <Span fontSize="34" margin="25px 25px 0px">bright coders factory</Span>
-                <Span fontSize="14" margin="0px 20px 10px">login page</Span>
-                
-                <Input 
-                    placeholder='login'
-                    name='login'
-                    type='text'
-                />
-                <Input 
-                    placeholder='password'
-                    name='password'
-                    type='password'
-                />
-                <Button fontSize='18'>
-                    hello
-                </Button>
+            <FlexContainer flexDirection='column' alignItems='center' justifyContent='center' padding='10px'>
+                <Span fontSize='34' margin='25px 25px 0px'>bright coders factory</Span>
+                <Span fontSize='14' margin='0px 20px 10px'>login page</Span>
 
-                <Button fontSize='16'>
-                    <LinkElement path='/'>
-                        back
-                    </LinkElement>
-                </Button>
+                <Formik
+                    initialValues={{
+                        loginInput: login,
+                        passwordInput: password,
+                    }}
+                    validationSchema={SignupSchema}
+                    onSubmit={values => {
+                        setLogin(values.loginInput);
+                        setPassword(values.passwordInput);
+                        console.log(values);
+                        console.log(login, password);
+                    }}
+                    >
+                    {({ errors, touched }) => (
+                        <Form className='form'>
+                            <Field name='loginInput' className='textInput' placeholder='login'/>
+                            {errors.loginInput && touched.loginInput ? (
+                                <div>{errors.loginInput}</div>
+                            ) : null}
+                            <Field name='passwordInput' className='textInput' type='password' placeholder='password'/>
+                            {errors.passwordInput && touched.passwordInput ? (
+                                <div>{errors.passwordInput}</div>
+                            ) : null}
+                            <button type='submit' className='button'>Submit</button>
+                            <button type='button' className='button'>
+                                <LinkElement path='/'>
+                                    back
+                                </LinkElement>
+                            </button>
+
+                        </Form>
+                    )}
+                </Formik>
 
                 <Icon 
-                        iconSun={faSun} 
-                        iconMoon={faMoon}
-                        isDark={isDark}
-                        handleClick={toggleIsDark}     
-                    />
+                    iconSun={faSun} 
+                    iconMoon={faMoon}
+                    isDark={isDark}
+                    handleClick={toggleIsDark}     
+                />
             </FlexContainer>
         </div>
     )

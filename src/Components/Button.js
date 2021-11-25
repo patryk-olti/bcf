@@ -5,7 +5,7 @@ import 'typeface-roboto';
 const Button = ({ children, fontSize }) => {
 
     const styles = {
-        padding: '0px',
+        padding: '5px 15px',
         margin: '5px',
         fontSize: `${fontSize}px`,
         letterSpacing: '2px',

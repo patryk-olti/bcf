@@ -6,7 +6,6 @@ const LinkElement = ({ children, path }) => {
 
     const styles = {
         display: 'block',
-        padding: '5px 15px',
         textDecoration: 'none',
         color: 'black'
     }
