@@ -36,6 +36,7 @@ const Register = () => {
         passwordInput2: Yup.string()
             .min(4, 'Too Short!')
             .max(30, 'Too Long!')
+            .oneOf([Yup.ref('passwordInput'),null],'Passwords must match')
             .required('Required'),
         email: Yup.string().email('Invalid email').required('Required'),
         accept: Yup.bool()
@@ -59,14 +60,10 @@ const Register = () => {
                     onSubmit={values => {
 
                         if(values.accept){
-                            if(values.passwordInput === values.passwordInput2){
-                                setLogin(values.loginInput);
-                                setPassword(values.passwordInput);
-                                setEmail(values.email);
-                                console.log(values);
-                            }else{
-                                console.log('oba hasla rozne')
-                            }
+                            setLogin(values.loginInput);
+                            setPassword(values.passwordInput);
+                            setEmail(values.email);
+                            console.log(values);
                         }
                     }}
                     >
