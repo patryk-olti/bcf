@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 const Icon = ({ iconSun, iconMoon }) => {
 
-    const { isDark, handleClick } = useContext(AppContext);
+    const { isDark, toggleIsDark } = useContext(AppContext);
 
     const styles = {
         color: isDark ? 'white' : 'black',
@@ -18,7 +18,7 @@ const Icon = ({ iconSun, iconMoon }) => {
         <FontAwesomeIcon 
             style={styles}
             icon = {renderIcon}
-            onClick={handleClick}    
+            onClick={toggleIsDark}    
         />
     )
 }
