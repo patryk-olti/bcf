@@ -1,9 +1,12 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
+import { useNavigate } from 'react-router';
 
 import { Formik, Form, Field } from 'formik';
 import * as Yup from 'yup';
 
 import { AppContext } from '../AppContext';
+
+import { getdb, adddb } from '../firebaseConfig';
 
 import '../Styles/_styles.sass';
 import '../Styles/_forms.sass';
@@ -20,12 +23,15 @@ import { faSun, faMoon } from '@fortawesome/free-solid-svg-icons'
 
 const Register = () => {
 
-    const [ login, setLogin ] = useState('');
-    const [ password, setPassword ] = useState('');
-    const [ email, setEmail ] = useState('');
+    const [ actualDb, setActualDb ] = useState([]);
+    const navigate = useNavigate();
 
     const { isDark } = useContext(AppContext);
     const classForApp = isDark ? 'container container--darkView' : 'container container--lightView';
+
+    useEffect( () => {
+        setActualDb(getdb('users'));
+    }, [])
 
     const SignupSchema = Yup.object().shape({
         loginInput: Yup.string()
@@ -55,20 +61,33 @@ const Register = () => {
 
                 <Formik
                     initialValues={{
-                        loginInput: login,
-                        passwordInput: password,
-                        passwordInput2: password,
-                        email: email,
+                        loginInput: '',
+                        passwordInput: '',
+                        passwordInput2: '',
+                        email: '',
                         accept: false
                     }}
                     validationSchema={SignupSchema}
                     onSubmit={values => {
-
                         if(values.accept){
-                            setLogin(values.loginInput);
-                            setPassword(values.passwordInput);
-                            setEmail(values.email);
-                            console.log(values);
+                            let notGoodLogin = actualDb.find( item => item.login === values.loginInput);
+                            let notGoodEmail = actualDb.find( item => item.email === values.email);
+                            
+                            if(notGoodLogin){
+                                alert('login exist')
+                            }else if(notGoodEmail){
+                                alert('email exist');
+                            }else{
+                                const registerObj = {
+                                    login: values.loginInput,
+                                    password: values.passwordInput,
+                                    email: values.email,
+                                    permission: 'user'
+                                }
+                                adddb('users',registerObj);
+                                alert('success - click ok for change page')
+                                setTimeout( () => navigate('/login') , 2000)
+                            }
                         }
                     }}
                     >
@@ -103,13 +122,12 @@ const Register = () => {
                                 ) : null}
                             </label>
 
-                            <button type='submit' className={ isDark ? 'button button__darkMode' : 'button button__lightMode'} >login</button>
+                            <button type='submit' className={ isDark ? 'button button__darkMode' : 'button button__lightMode'} >register</button>
                             <button type='button' className='button'>
                                 <LinkElement path='/'>
                                     back
                                 </LinkElement>
                             </button>
-
                         </Form>
                     )}
                 </Formik>

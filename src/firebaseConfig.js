@@ -1,6 +1,5 @@
 import { initializeApp } from "firebase/app";
-import { getFirestore } from "firebase/firestore";
-import { collection, onSnapshot } from "firebase/firestore"; 
+import { getFirestore, collection, onSnapshot, addDoc } from "firebase/firestore";
 
 const firebaseApp = initializeApp({
   apiKey: "AIzaSyAyK2GZa4VBOLxU5JRSRO9grExQFQexuUw",
@@ -22,15 +21,20 @@ function getdb(collectionName){
   })
 
   return dataArray;
-
-    /*
-    let dataArray = [];
-    const querySnapshot = await getDocs(collection(db, collectionName));
-    querySnapshot.forEach((doc) => {
-      dataArray.push(doc.data());
-    });
-    return dataArray;
-    */
 }
 
-export { getdb };
+async function adddb(collectionName,inputObj){
+  try {
+    const docRef = await addDoc(collection(db, collectionName), {
+      login: inputObj.login,
+      password: inputObj.password,
+      email: inputObj.email,
+      permission: 'user'
+    });
+    console.log("Document written with ID: ", docRef.id);
+  } catch (e) {
+    console.error("Error adding document: ", e);
+  }
+}
+
+export { getdb, adddb };

@@ -53,7 +53,7 @@ const Login = () => {
             if(findUser.permission === 'user'){
                 console.log('hello user');
                 toggleLogged(true);
-
+                navigate('/userpage');
             }else if(findUser.permission === 'admin'){
                 console.log('hello admin');
                 toggleLogged(true);
