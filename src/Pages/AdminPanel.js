@@ -9,8 +9,10 @@ import FlexContainer from "../Components/FlexContainer";
 import Span from "../Components/Span";
 import Icon from "../Components/Icon";
 import BigUser from "../Components/BigUser";
+import TopNav from "../Components/TopNav";
 
 import { faSun, faMoon } from '@fortawesome/free-solid-svg-icons'
+import LogInOut from "../Components/LogInOut";
 
 const AdminPanel = () => {
 
@@ -24,7 +26,7 @@ const AdminPanel = () => {
         }, 2000)
     }, [])
 
-    const { isDark, toggleIsDark } = useContext(AppContext);
+    const { isDark, toggleIsDark, logged, toggleLogged } = useContext(AppContext);
     const classForApp = isDark ? 'container container--darkView' : 'container container--lightView';
 
     const usersElements = usersArray.map(user => (
@@ -45,12 +47,17 @@ const AdminPanel = () => {
                     { !loading ? usersElements : <Span fontSize="34" margin="20px 20px 10px">loading users</Span> }
                 </FlexContainer>
 
-                <Icon 
-                    iconSun={faSun} 
-                    iconMoon={faMoon}
-                    isDark={isDark}
-                    handleClick={toggleIsDark}     
-                />
+                
+
+                <TopNav>
+                    <LogInOut boolState={logged} handleClick={toggleLogged} />
+                    <Icon 
+                        iconSun={faSun} 
+                        iconMoon={faMoon}
+                        isDark={isDark}
+                        handleClick={toggleIsDark}     
+                    />
+                </TopNav>
             </FlexContainer>
         </div>
     )

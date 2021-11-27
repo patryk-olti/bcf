@@ -23,9 +23,6 @@ const BigUser = ({ firstName, lastName, primarySkill, moreSkills }) => {
             <Span fontSize='16' margin='10px'>
                 tech: {moreSkills.map( skill => <span> {skill}</span>)}
             </Span>
-            <button onClick={ () => console.log(moreSkills)}>
-                click
-            </button>
         </FlexContainer>
     )
 }

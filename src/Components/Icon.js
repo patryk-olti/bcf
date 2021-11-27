@@ -4,9 +4,6 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 const Icon = ({ iconSun, iconMoon, isDark, handleClick }) => {
 
     const styles = {
-        position: 'absolute',
-        top: '1em',
-        right: '1em',
         color: isDark ? 'white' : 'black',
         cursor: 'pointer',
         fontSize: '2em'
