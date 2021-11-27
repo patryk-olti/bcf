@@ -2,7 +2,7 @@ import React from 'react';
 
 import '../Styles/_styles.sass';
 
-const FlexContainer = ({ children, flexDirection, alignItems, justifyContent, padding }) => {
+const FlexContainer = ({ children, flexDirection, alignItems, justifyContent, padding, borderBool }) => {
 
     const styles = {
         display: 'flex',
@@ -10,9 +10,9 @@ const FlexContainer = ({ children, flexDirection, alignItems, justifyContent, pa
         alignItems: `${alignItems}`,
         justifyContent: `${justifyContent}`,
         padding: `${padding}`,
-        border: '1px solid black',
+        border: `${borderBool ? '1px solid black' : null}`,
         borderRadius: '5px',
-        boxShadow: `1px 1px 3px 0px rgba(0,0,0,0.75)`
+        boxShadow: `${borderBool ? '1px 1px 3px 0px rgba(0,0,0,0.75)' : null}`,
     }
 
     return(

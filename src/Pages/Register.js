@@ -46,7 +46,7 @@ const Register = () => {
 
     return(
         <div className={classForApp} >
-            <FlexContainer flexDirection='column' alignItems='center' justifyContent='center' padding='10px'>
+            <FlexContainer flexDirection='column' alignItems='center' justifyContent='center' padding='10px' borderBool={true}>
 
                 <Animation />
                 <Span fontSize='34' margin='25px 25px 0px'>bright coders factory</Span>

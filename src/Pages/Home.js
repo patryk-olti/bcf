@@ -21,7 +21,7 @@ const Home = () => {
 
     return(
         <div className={classForApp} >
-                <FlexContainer flexDirection='column' alignItems='center' justifyContent='center' padding='20px 40px'>
+                <FlexContainer flexDirection='column' alignItems='center' justifyContent='center' padding='20px 40px' borderBool={true}>
 
                     <Animation />
                     <Span fontSize="24" margin="0px 20px" >Work with us, work with the best.</Span>

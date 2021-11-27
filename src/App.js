@@ -32,7 +32,8 @@ function App() {
             <Route exact path='/register' element={<Register />} />
             <Route exact path='/animation' element={<Animation />} />
             <Route exact path='/adminpanel' element={<AdminPanel />} />
-            <Route exact path='/userpage' element={<UserPage />} />
+            {logged ? <Route exact path='/adminpanel' element={<AdminPanel />} /> : <Route path='/*' element={<Error />} />}
+            {logged ? <Route exact path='/userpage' element={<UserPage />} /> : <Route path='/*' element={<Error />} />}
             <Route path='/*' element={<Error />} />
           </Routes>
         </Router>

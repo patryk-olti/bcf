@@ -17,7 +17,7 @@ const Error = () => {
 
     return(
         <div className={classForApp}>
-            <FlexContainer flexDirection='column' alignItems='center' justifyContent='center' >
+            <FlexContainer flexDirection='column' alignItems='center' justifyContent='center' borderBool={true}>
                 <Span fontSize="34" margin="20px 20px 10px">that's no funny</Span>
                 <Span fontSize="34" margin="10px 20px 10px">please go to the home page</Span>
                 <Span fontSize="34" margin="10px 25px 20px">bright coders factory</Span>
