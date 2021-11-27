@@ -5,13 +5,15 @@ export const AppContext = createContext();
 const AppProvider = ({ children }) => {
 
     const [isDark, setIsDark] = useState(false);
+    const [logged, setLogged] = useState(false);
 
     const toggleIsDark = () => setIsDark( prevValue => !prevValue );
+    const toggleLogged = () => setLogged( prevValue => !prevValue );
 
     return(
         <AppContext.Provider value={{
-            isDark,
-            toggleIsDark
+            isDark, logged,
+            toggleIsDark, toggleLogged
         }} >
             { children }
         </AppContext.Provider>

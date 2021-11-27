@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useContext } from 'react';
+import { useNavigate } from 'react-router';
 
 import { Formik, Form, Field } from 'formik';
 import * as Yup from 'yup';
@@ -21,16 +22,14 @@ import { faSun, faMoon } from '@fortawesome/free-solid-svg-icons'
 
 const Login = () => {
 
-    const [ login, setLogin ] = useState('');
-    const [ password, setPassword ] = useState('');
-
     const [ usersArray, setUsersArray ] = useState([]);
+    const navigate = useNavigate();
     
     useEffect( () => {
         setUsersArray(getdb('users'));
     }, [])
 
-    const { isDark, toggleIsDark } = useContext(AppContext);
+    const { isDark, toggleIsDark, toggleLogged } = useContext(AppContext);
     const classForApp = isDark ? 'container container--darkView' : 'container container--lightView';
 
     const SignupSchema = Yup.object().shape({
@@ -44,6 +43,27 @@ const Login = () => {
             .required('Required'),
     });
 
+    const loginFunction = (data, input) => {
+        const login = input.login;
+        const findUser = data.find( user => user.login === login);
+
+        if(findUser.password === input.password){
+            if(findUser.permission === 'user'){
+                console.log('hello user');
+                toggleLogged(true);
+
+            }else if(findUser.permission === 'admin'){
+                console.log('hello admin');
+                toggleLogged(true);
+                navigate('/adminpanel');
+            }else{
+                console.log('wrong permission');
+            }
+        }else{
+            console.log('bad password')
+        }
+    }
+
     return(
         <div className={classForApp} >
             <FlexContainer flexDirection='column' alignItems='center' justifyContent='center' padding='10px'>
@@ -54,15 +74,17 @@ const Login = () => {
 
                 <Formik
                     initialValues={{
-                        loginInput: login,
-                        passwordInput: password,
+                        loginInput: '',
+                        passwordInput: '',
                     }}
                     validationSchema={SignupSchema}
                     onSubmit={values => {
-                        setLogin(values.loginInput);
-                        setPassword(values.passwordInput);
-                        console.log(values);
-                        console.log(login, password);
+                        const loginObject = {
+                            login: values.loginInput,
+                            password: values.passwordInput,
+                        }
+
+                        loginFunction(usersArray, loginObject)
                     }}
                     >
                     {({ errors, touched }) => (
@@ -75,7 +97,9 @@ const Login = () => {
                             {errors.passwordInput && touched.passwordInput ? (
                                 <div>{errors.passwordInput}</div>
                             ) : null}
-                            <button type='submit' className='button'>login</button>
+                            <button type='submit' className='button'>
+                                login
+                            </button>
                             <button type='button' className='button'>
                                 <LinkElement path='/'>
                                     back

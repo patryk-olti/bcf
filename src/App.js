@@ -1,4 +1,6 @@
-import React from 'react';
+import React, { useContext } from 'react';
+
+import { AppContext } from './AppContext';
 
 import './App.css';
 
@@ -14,8 +16,12 @@ import Register from './Pages/Register';
 import Error from './Pages/Error';
 
 import Animation from './Pages/Animation';
+import AdminPanel from './Pages/AdminPanel';
+import UserPage from './Pages/UserPage';
 
 function App() {
+
+  const { logged } = useContext(AppContext);
 
   return (
     <div className="App">
@@ -25,6 +31,8 @@ function App() {
             <Route exact path='/login' element={<Login />} />
             <Route exact path='/register' element={<Register />} />
             <Route exact path='/animation' element={<Animation />} />
+            <Route exact path='/adminpanel' element={<AdminPanel />} />
+            <Route exact path='/userpage' element={<UserPage />} />
             <Route path='/*' element={<Error />} />
           </Routes>
         </Router>
