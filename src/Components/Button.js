@@ -2,7 +2,7 @@ import React from "react";
 
 import 'typeface-roboto';
 
-const Button = ({ children, fontSize }) => {
+const Button = ({ children, fontSize, handleClick }) => {
 
     const styles = {
         padding: '5px 15px',
@@ -18,7 +18,7 @@ const Button = ({ children, fontSize }) => {
     }
 
     return(
-        <button style={styles} >
+        <button style={styles} onClick={handleClick}>
             {children}
         </button>
     )

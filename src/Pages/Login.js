@@ -18,6 +18,7 @@ import Icon from '../Components/Icon';
 import TopNav from "../Components/TopNav";
 import LogInOut from "../Components/LogInOut";
 
+import MessageWindow from '../Components/MessageWindow';
 import Animation from './Animation';
 
 import { faSun, faMoon } from '@fortawesome/free-solid-svg-icons'
@@ -25,6 +26,8 @@ import { faSun, faMoon } from '@fortawesome/free-solid-svg-icons'
 const Login = () => {
 
     const [ usersArray, setUsersArray ] = useState([]);
+    const [ loginErr, setLoginErr ] = useState(false);
+    const toggleLoginErr = () => setLoginErr(prev => !prev);
     const navigate = useNavigate();
     
     useEffect( () => {
@@ -49,20 +52,25 @@ const Login = () => {
         const login = input.login;
         const findUser = data.find( user => user.login === login);
 
-        if(findUser.password === input.password){
-            if(findUser.permission === 'user'){
-                console.log('hello user');
-                toggleLogged(true);
-                navigate('/userpage');
-            }else if(findUser.permission === 'admin'){
-                console.log('hello admin');
-                toggleLogged(true);
-                navigate('/adminpanel');
+        if(findUser){
+            if(findUser.password === input.password){
+                if(findUser.permission === 'user'){
+                    console.log('hello user');
+                    toggleLogged(true);
+                    navigate('/userpage');
+                }else if(findUser.permission === 'admin'){
+                    console.log('hello admin');
+                    toggleLogged(true);
+                    navigate('/adminpanel');
+                }else{
+                    console.log('wrong permission');
+                }
             }else{
-                console.log('wrong permission');
+                setLoginErr(true);
+                input.login = '';
             }
         }else{
-            console.log('bad password')
+            setLoginErr(true);
         }
     }
 
@@ -70,6 +78,7 @@ const Login = () => {
         <div className={classForApp} >
             <FlexContainer flexDirection='column' alignItems='center' justifyContent='center' padding='10px' borderBool={true}>
 
+                { loginErr ? <MessageWindow content='wrong login or password' handleClick={toggleLoginErr}/> : null}
                 <Animation />
                 <Span fontSize='34' margin='25px 25px 0px'>bright coders factory</Span>
                 <Span fontSize='14' margin='0px 20px 10px'>login page</Span>

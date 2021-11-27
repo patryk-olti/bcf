@@ -29,7 +29,11 @@ async function adddb(collectionName,inputObj){
       login: inputObj.login,
       password: inputObj.password,
       email: inputObj.email,
-      permission: 'user'
+      permission: 'user',
+      firstName: 'firstName',
+      lastName: 'lastName',
+      primarySkill: 'primarySkill',
+      moreSkills: ['moreSkills']
     });
     console.log("Document written with ID: ", docRef.id);
   } catch (e) {
