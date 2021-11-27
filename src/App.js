@@ -1,8 +1,6 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 
 import './App.css';
-
-import { getdb } from './firebaseConfig';
 
 import { 
   BrowserRouter as Router,
@@ -17,12 +15,7 @@ import Error from './Pages/Error';
 
 import Animation from './Pages/Animation';
 
-
 function App() {
-
-  useEffect( () => {
-    getdb('users');
-  }, [])
 
   return (
     <div className="App">

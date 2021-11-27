@@ -1,9 +1,11 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 
 import { Formik, Form, Field } from 'formik';
 import * as Yup from 'yup';
 
 import { AppContext } from '../AppContext';
+
+import { getdb } from '../firebaseConfig';
 
 import '../Styles/_styles.sass';
 import '../Styles/_forms.sass';
@@ -21,6 +23,12 @@ const Login = () => {
 
     const [ login, setLogin ] = useState('');
     const [ password, setPassword ] = useState('');
+
+    const [ usersArray, setUsersArray ] = useState([]);
+    
+    useEffect( () => {
+        setUsersArray(getdb('users'));
+    }, [])
 
     const { isDark, toggleIsDark } = useContext(AppContext);
     const classForApp = isDark ? 'container container--darkView' : 'container container--lightView';
@@ -77,7 +85,6 @@ const Login = () => {
                         </Form>
                     )}
                 </Formik>
-
                 <Icon 
                     iconSun={faSun} 
                     iconMoon={faMoon}
