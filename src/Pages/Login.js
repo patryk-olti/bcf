@@ -15,6 +15,8 @@ import FlexContainer from '../Components/FlexContainer';
 import Span from '../Components/Span';
 import LinkElement from '../Components/LinkElement';
 import Icon from '../Components/Icon';
+import TopNav from "../Components/TopNav";
+import LogInOut from "../Components/LogInOut";
 
 import Animation from './Animation';
 
@@ -29,7 +31,7 @@ const Login = () => {
         setUsersArray(getdb('users'));
     }, [])
 
-    const { isDark, toggleIsDark, toggleLogged } = useContext(AppContext);
+    const { isDark, toggleLogged } = useContext(AppContext);
     const classForApp = isDark ? 'container container--darkView' : 'container container--lightView';
 
     const SignupSchema = Yup.object().shape({
@@ -109,12 +111,13 @@ const Login = () => {
                         </Form>
                     )}
                 </Formik>
-                <Icon 
-                    iconSun={faSun} 
-                    iconMoon={faMoon}
-                    isDark={isDark}
-                    handleClick={toggleIsDark}     
-                />
+                <TopNav>
+                    <LogInOut />
+                    <Icon 
+                        iconSun={faSun} 
+                        iconMoon={faMoon} 
+                    />
+                </TopNav>
             </FlexContainer>
         </div>
     )

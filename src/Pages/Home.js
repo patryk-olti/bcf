@@ -9,6 +9,8 @@ import Span from "../Components/Span";
 import Button from "../Components/Button";
 import LinkElement from "../Components/LinkElement";
 import Icon from "../Components/Icon";
+import TopNav from "../Components/TopNav";
+import LogInOut from "../Components/LogInOut";
 
 import Animation from "./Animation";
 
@@ -16,7 +18,7 @@ import { faSun, faMoon } from '@fortawesome/free-solid-svg-icons'
 
 const Home = () => {
 
-    const { isDark, toggleIsDark } = useContext(AppContext);
+    const { isDark } = useContext(AppContext);
     const classForApp = isDark ? 'container container--darkView' : 'container container--lightView';
 
     return(
@@ -40,12 +42,13 @@ const Home = () => {
                         </LinkElement>
                     </Button>
 
-                    <Icon 
-                        iconSun={faSun} 
-                        iconMoon={faMoon}
-                        isDark={isDark}
-                        handleClick={toggleIsDark}     
-                    />
+                    <TopNav>
+                        <LogInOut />
+                        <Icon 
+                            iconSun={faSun} 
+                            iconMoon={faMoon}  
+                        />
+                    </TopNav>
                 
                 </FlexContainer>
         </div>

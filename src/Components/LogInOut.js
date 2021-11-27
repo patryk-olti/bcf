@@ -1,27 +1,30 @@
-import React from "react";
+import React, { useContext } from "react";
+
+import { AppContext } from "../AppContext";
 
 import LinkElement from "./LinkElement";
 
 import 'typeface-roboto';
 
-const LogInOut = ({ boolState, toggleLogged }) => {
+const LogInOut = () => {
+
+    const { logged, toggleLogged } = useContext(AppContext);
 
     const styles = {
         fontSize: '1em',
-        color: 'white',
         letterSpacing: '2px',
         border: 'none',
         background: 'transparent',
         cursor: 'pointer',
-        fontFamily: 'roboto',
+        fontFamily: 'roboto'
     }
 
-    const content = boolState ? <LinkElement path="/"> logOut </LinkElement> : <LinkElement path="/login"> logIn </LinkElement>;
+    const content = logged ? <LinkElement path="/"> logOut </LinkElement> : <LinkElement path="/login"> logIn </LinkElement>;
 
     return(
         <button 
             style={styles}
-            onClick={toggleLogged}
+            onClick={logged ? toggleLogged : null}
             >
             {content}
         </button>

@@ -26,7 +26,7 @@ const AdminPanel = () => {
         }, 2000)
     }, [])
 
-    const { isDark, toggleIsDark, logged, toggleLogged } = useContext(AppContext);
+    const { isDark } = useContext(AppContext);
     const classForApp = isDark ? 'container container--darkView' : 'container container--lightView';
 
     const usersElements = usersArray.map(user => (
@@ -46,16 +46,12 @@ const AdminPanel = () => {
                 <FlexContainer flexDirection='row' alignItems='center' justifyContent='center' >
                     { !loading ? usersElements : <Span fontSize="34" margin="20px 20px 10px">loading users</Span> }
                 </FlexContainer>
-
                 
-
                 <TopNav>
-                    <LogInOut boolState={logged} handleClick={toggleLogged} />
+                    <LogInOut />
                     <Icon 
                         iconSun={faSun} 
                         iconMoon={faMoon}
-                        isDark={isDark}
-                        handleClick={toggleIsDark}     
                     />
                 </TopNav>
             </FlexContainer>

@@ -1,7 +1,10 @@
-import React from "react";
+import React, { useContext } from "react";
+import { AppContext } from "../AppContext";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
-const Icon = ({ iconSun, iconMoon, isDark, handleClick }) => {
+const Icon = ({ iconSun, iconMoon }) => {
+
+    const { isDark, handleClick } = useContext(AppContext);
 
     const styles = {
         color: isDark ? 'white' : 'black',

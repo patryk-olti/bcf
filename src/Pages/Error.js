@@ -12,7 +12,7 @@ import { faSun, faMoon } from '@fortawesome/free-solid-svg-icons'
 
 const Error = () => {
 
-    const { isDark, toggleIsDark } = useContext(AppContext);
+    const { isDark } = useContext(AppContext);
     const classForApp = isDark ? 'container container--darkView' : 'container container--lightView';
 
     return(
@@ -23,9 +23,7 @@ const Error = () => {
                 <Span fontSize="34" margin="10px 25px 20px">bright coders factory</Span>
                 <Icon 
                     iconSun={faSun} 
-                    iconMoon={faMoon}
-                    isDark={isDark}
-                    handleClick={toggleIsDark}     
+                    iconMoon={faMoon} 
                 />
             </FlexContainer>
         </div>

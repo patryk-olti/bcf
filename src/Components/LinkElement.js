@@ -1,13 +1,17 @@
-import React from "react";
+import React, { useContext } from "react";
+
+import { AppContext } from "../AppContext";
 
 import { Link } from 'react-router-dom';
 
 const LinkElement = ({ children, path }) => {
 
+    const { isDark } = useContext(AppContext);
+
     const styles = {
         display: 'block',
         textDecoration: 'none',
-        color: 'black'
+        color: isDark ? 'white' : 'black'
     }
 
     return(

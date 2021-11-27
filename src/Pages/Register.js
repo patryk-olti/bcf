@@ -12,6 +12,7 @@ import FlexContainer from '../Components/FlexContainer';
 import Span from '../Components/Span';
 import LinkElement from '../Components/LinkElement';
 import Icon from '../Components/Icon';
+import TopNav from '../Components/TopNav';
 
 import Animation from './Animation';
 
@@ -23,7 +24,7 @@ const Register = () => {
     const [ password, setPassword ] = useState('');
     const [ email, setEmail ] = useState('');
 
-    const { isDark, toggleIsDark } = useContext(AppContext);
+    const { isDark } = useContext(AppContext);
     const classForApp = isDark ? 'container container--darkView' : 'container container--lightView';
 
     const SignupSchema = Yup.object().shape({
@@ -113,12 +114,12 @@ const Register = () => {
                     )}
                 </Formik>
 
-                <Icon 
-                    iconSun={faSun} 
-                    iconMoon={faMoon}
-                    isDark={isDark}
-                    handleClick={toggleIsDark}     
-                />
+                <TopNav>
+                    <Icon 
+                        iconSun={faSun} 
+                        iconMoon={faMoon}
+                    />
+                </TopNav>
             </FlexContainer>
         </div>
     )
