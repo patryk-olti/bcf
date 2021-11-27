@@ -99,7 +99,7 @@ const Login = () => {
                             {errors.passwordInput && touched.passwordInput ? (
                                 <div>{errors.passwordInput}</div>
                             ) : null}
-                            <button type='submit' className='button'>
+                            <button type='submit' className={ isDark ? 'button button__darkMode' : 'button button__lightMode'} >
                                 login
                             </button>
                             <button type='button' className='button'>

@@ -103,7 +103,7 @@ const Register = () => {
                                 ) : null}
                             </label>
 
-                            <button type='submit' className='button'>login</button>
+                            <button type='submit' className={ isDark ? 'button button__darkMode' : 'button button__lightMode'} >login</button>
                             <button type='button' className='button'>
                                 <LinkElement path='/'>
                                     back
