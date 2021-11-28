@@ -6,14 +6,15 @@ const AppProvider = ({ children }) => {
 
     const [isDark, setIsDark] = useState(false);
     const [logged, setLogged] = useState(false);
+    const [userName, setUserName] = useState('');
 
     const toggleIsDark = () => setIsDark( prevValue => !prevValue );
     const toggleLogged = () => setLogged( prevValue => !prevValue );
 
     return(
         <AppContext.Provider value={{
-            isDark, logged,
-            toggleIsDark, toggleLogged
+            isDark, logged, userName,
+            toggleIsDark, toggleLogged, setUserName
         }} >
             { children }
         </AppContext.Provider>

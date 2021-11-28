@@ -11,27 +11,32 @@ import TopNav from "../Components/TopNav";
 import LogInOut from "../Components/LogInOut";
 import NavLink from "../Components/NavLink";
 
+import UserEdit from "../Containers/UserEdit";
+import UserTest from '../Containers/UserTest';
+import UserRequire from "../Containers/UserRequire";
+import UserPreference from "../Containers/UserPreference";
+
 import { faSun, faMoon } from '@fortawesome/free-solid-svg-icons';
 
 const UserPage = () => {
 
     const [ actualPage, setActualPage ] = useState('home'); /* home | edit | test | require | preference */
 
-    const { isDark } = useContext(AppContext);
+    const { isDark, userName } = useContext(AppContext);
     const classForApp = isDark ? 'container container--darkView' : 'container container--lightView';
 
     const switchPages = ( path ) => {
         switch(path) {
             case 'home':
-                return <Span fontSize="34" margin="20px 20px 10px">home</Span>
+                return <Span fontSize="34" margin="20px 20px 10px">home: hello {userName} </Span>
             case 'edit':
-                return <Span fontSize="34" margin="20px 20px 10px">edit</Span>
+                return <UserEdit />
             case 'test':
-                return <Span fontSize="34" margin="20px 20px 10px">test</Span>
+                return <UserTest />
             case 'require':
-                return <Span fontSize="34" margin="20px 20px 10px">require</Span>
+                return <UserRequire />
             case 'preference':
-                return <Span fontSize="34" margin="20px 20px 10px">preference</Span>
+                return <UserPreference />
             default:
                 return <Span fontSize="34" margin="20px 20px 10px">something wrong</Span>
         }

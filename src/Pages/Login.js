@@ -34,7 +34,7 @@ const Login = () => {
         setUsersArray(getdb('users'));
     }, [])
 
-    const { isDark, toggleLogged } = useContext(AppContext);
+    const { isDark, toggleLogged, setUserName } = useContext(AppContext);
     const classForApp = isDark ? 'container container--darkView' : 'container container--lightView';
 
     const SignupSchema = Yup.object().shape({
@@ -54,6 +54,7 @@ const Login = () => {
 
         if(findUser){
             if(findUser.password === input.password){
+                setUserName(login);
                 if(findUser.permission === 'user'){
                     console.log('hello user');
                     toggleLogged(true);
