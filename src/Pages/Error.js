@@ -8,7 +8,7 @@ import FlexContainer from "../Components/FlexContainer";
 import Span from "../Components/Span";
 import Icon from "../Components/Icon";
 
-import { faSun, faMoon } from '@fortawesome/free-solid-svg-icons'
+import { faSun, faMoon } from '@fortawesome/free-solid-svg-icons';
 
 const Error = () => {
 
