@@ -23,6 +23,17 @@ function getdb(collectionName){
   return dataArray;
 }
 
+function getNameElement(collectionName, name){
+    onSnapshot(collection(db,collectionName), ( snapshot ) => {
+    snapshot.docs.forEach( doc => {
+      if( doc.data().login === name) {
+        return doc.data()
+      }  
+    })
+  })
+  console.log('empty')
+}
+
 async function adddb(collectionName,inputObj){
   try {
     const docRef = await addDoc(collection(db, collectionName), {
@@ -41,4 +52,4 @@ async function adddb(collectionName,inputObj){
   }
 }
 
-export { getdb, adddb };
+export { getdb, getNameElement, adddb };

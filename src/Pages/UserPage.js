@@ -1,8 +1,10 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useEffect, useContext } from "react";
 
 import { AppContext } from "../AppContext";
 
 import '../Styles/_styles.sass';
+
+import { getNameElement } from '../firebaseConfig';
 
 import FlexContainer from "../Components/FlexContainer";
 import Span from "../Components/Span";
@@ -24,6 +26,18 @@ const UserPage = () => {
 
     const { isDark, userName } = useContext(AppContext);
     const classForApp = isDark ? 'container container--darkView' : 'container container--lightView';
+
+    const [ dbData, setDbData ] = useState([]);
+
+    async function handleAsync(){
+        await setDbData(getNameElement('users', userName));
+    }
+
+    useEffect( () => {
+        handleAsync();
+        console.log(dbData);
+    },[dbData])
+
 
     const switchPages = ( path ) => {
         switch(path) {
@@ -54,6 +68,7 @@ const UserPage = () => {
                 
                 {switchPages(actualPage)}
 
+                <button onClick={ () => console.log(dbData)}>deBUG me</button>
                 <TopNav>
                     <LogInOut />
                     <Icon 
