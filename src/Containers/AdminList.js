@@ -37,7 +37,7 @@ const AdminList = ({ data }) => {
 
     useEffect( () => {
         createList();
-    }, [])
+    }, [ allElements ])
 
     const styles = {
         padding: '5px'

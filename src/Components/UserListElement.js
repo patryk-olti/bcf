@@ -1,11 +1,30 @@
-import React from 'react';
+import React, { useRef } from 'react';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHtml5, faCss3, faJs, faReact, faNodeJs, faGithub } from '@fortawesome/free-brands-svg-icons';
 import { faExclamationTriangle } from '@fortawesome/free-solid-svg-icons';
 
+import { gsap } from 'gsap/all';
+
 
 const UserListElement = ({ firstName, lastName, primarySkill }) => {
+
+    const tl = gsap.timeline();
+    const oneElement = useRef();
+
+    const onElementAnim = () => {
+        tl.to(oneElement.current, {
+            backgroundColor: 'black',
+            duration: '1s'
+        })
+    }
+
+    const offElementAnim = () => {
+        tl.to(oneElement.current, {
+            backgroundColor: 'transparent',
+            duration: '1s'
+        })
+    }
 
     const styles = {
         box: {
@@ -13,7 +32,8 @@ const UserListElement = ({ firstName, lastName, primarySkill }) => {
             flexDirection: 'row',
             justifyContent: 'space-around',
             borderBottom: '1px solid black',
-            padding: '5px 15px'
+            padding: '5px 15px',
+            cursor: 'pointer'
         },
         info: {
             fontSize: '18px',
@@ -40,7 +60,7 @@ const UserListElement = ({ firstName, lastName, primarySkill }) => {
     }
 
     return(
-        <div style={styles.box}>
+        <div style={styles.box} ref={oneElement} onMouseEnter={onElementAnim} onMouseLeave={offElementAnim} >
             <div style={styles.info} > {firstName} {lastName} </div>
             <div style={styles.info} > {primarySkill} </div>
             <div style={styles.icon} > {primaryIcon()} </div>
