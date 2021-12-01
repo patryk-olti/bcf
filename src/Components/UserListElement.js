@@ -7,7 +7,11 @@ import { faExclamationTriangle } from '@fortawesome/free-solid-svg-icons';
 import { gsap } from 'gsap/all';
 
 
-const UserListElement = ({ firstName, lastName, primarySkill }) => {
+const UserListElement = ({ userInfo, handleClick }) => {
+
+    const { firstName, lastName, primarySkill } = userInfo;
+
+    const clickMouse = () => handleClick(userInfo);
 
     const tl = gsap.timeline();
     const oneElement = useRef();
@@ -60,7 +64,7 @@ const UserListElement = ({ firstName, lastName, primarySkill }) => {
     }
 
     return(
-        <div style={styles.box} ref={oneElement} onMouseEnter={onElementAnim} onMouseLeave={offElementAnim} >
+        <div style={styles.box} ref={oneElement} onMouseEnter={onElementAnim} onMouseLeave={offElementAnim} onClick={clickMouse}>
             <div style={styles.info} > {firstName} {lastName} </div>
             <div style={styles.info} > {primarySkill} </div>
             <div style={styles.icon} > {primaryIcon()} </div>

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 
 import UserListElement from '../Components/UserListElement';
 
-const AdminList = ({ data }) => {
+const AdminList = ({ data, handleClick }) => {
 
     const [ allUsers, setAllUsers ] = useState([]);
     const [ onlyUsers, setOnlyUsers ] = useState([]);
@@ -22,9 +22,8 @@ const AdminList = ({ data }) => {
         return input.map( item => (
             <UserListElement
                 key={item.login}
-                firstName={item.firstName}
-                lastName={item.lastName}
-                primarySkill={item.primarySkill}
+                userInfo={item}
+                handleClick={handleClick}
             />
         ))
     }
